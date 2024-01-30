@@ -1,27 +1,27 @@
-const passport = require("passport");
-const cors = require("cors");
-const express = require("express");
+import passport from "passport";
+import cors from "cors";
+import express, { json, static } from "express";
 require("./mongodb/mongodb").default;
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const app = express();
-const authRoute = require("./routes/authRoute/authRoute");
-const cookieSession = require("cookie-session");
-const userRoute = require("./routes/userRoute/userRoute");
-const cartRoute = require("./routes/cartRoute/cartRoute");
-const productRoute = require("./routes/productRoute/productRoute");
-const blogRoute = require("./routes/blogRoute/blogRoute");
-const payRoute = require("./routes/payRoute/payRoute");
-const serviceRoute = require('./routes/serviceRoute/serviceRoute')
-const shipRoute = require("./routes/shipRoute/shipRoute");
-const reviewRoute = require('./routes/review/reviewRoute');
-const orderRoute = require("./routes/orderRoute/orderRoute");
+import authRoute from "./routes/authRoute/authRoute";
+import cookieSession from "cookie-session";
+import userRoute from "./routes/userRoute/userRoute";
+import cartRoute from "./routes/cartRoute/cartRoute";
+import productRoute from "./routes/productRoute/productRoute";
+import blogRoute from "./routes/blogRoute/blogRoute";
+import payRoute from "./routes/payRoute/payRoute";
+import serviceRoute from './routes/serviceRoute/serviceRoute';
+import shipRoute from "./routes/shipRoute/shipRoute";
+import reviewRoute from './routes/review/reviewRoute';
+import orderRoute from "./routes/orderRoute/orderRoute";
 // const googleAuthRoute = require("./routes/googleAuthRoute/googleAuthRoute");
 // const path = require("path");
-const graphRoute = require('./routes/graphRoute/graphRoute')
+import graphRoute from './routes/graphRoute/graphRoute';
 // require('./middleware/passport')(passport);
 
-app.use(express.json());
+app.use(json());
 app.use(cors())
 // app.use(
 //   cors({
@@ -77,7 +77,7 @@ app.use("/api", serviceRoute);
 app.use("/api", reviewRoute);
 app.use("/api" , graphRoute)
 
-app.use(express.static("public"));
+app.use(static("public"));
 app.get("/:file", (req, res) => {
   res.sendFile(__dirname + `/public/images/${req.params.file}`);
 });
