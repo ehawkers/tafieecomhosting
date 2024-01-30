@@ -1,7 +1,7 @@
 const passport = require("passport");
 const cors = require("cors");
 const express = require("express");
-require("./mongodb/mongodb");
+require("./mongodb/mongodb").default;
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const app = express();

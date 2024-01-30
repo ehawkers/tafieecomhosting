@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import { connect } from 'mongoose';
 
 require('dotenv').config()
 
 const mongodb = () =>{
-    mongoose.connect(process.env.AUTH).then(()=>{
+    connect(process.env.AUTH).then(()=>{
         console.log("Database connection established successfully")
     }).catch((err)=>{
             console.log("Error while connectiong with database")
@@ -11,4 +11,4 @@ const mongodb = () =>{
             process.exit(1);
     })
 }
-module.exports = mongodb();
+export default mongodb();
