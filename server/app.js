@@ -16,8 +16,8 @@ const serviceRoute = require('./routes/serviceRoute/serviceRoute')
 const shipRoute = require("./routes/shipRoute/shipRoute");
 const reviewRoute = require('./routes/review/reviewRoute');
 const orderRoute = require("./routes/orderRoute/orderRoute");
-const googleAuthRoute = require("./routes/googleAuthRoute/googleAuthRoute");
-const path = require("path");
+// const googleAuthRoute = require("./routes/googleAuthRoute/googleAuthRoute");
+// const path = require("path");
 const graphRoute = require('./routes/graphRoute/graphRoute')
 // require('./middleware/passport')(passport);
 
