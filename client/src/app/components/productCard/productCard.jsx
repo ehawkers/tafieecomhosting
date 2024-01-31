@@ -2,25 +2,51 @@ import React from "react";
 import "./productCard.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ cart, item }) => {
   const navigate = useNavigate();
 
   const onCartTap = async (id, inCart) => {
-    if (inCart) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    try{if (inCart) {
       navigate(`/Cart`);
-    } else {
+    } else if(localStorage.getItem('user_id')){
       await axios.put('http://localhost:8080/api/addToCart', {
         productId: id,
         userId: localStorage.getItem('user_id'),
         units: 1
       })
       navigate(`/Cart`);
+    }else{
+      toast.error("Please login to add this item to your cart", {
+        position: "bottom-right",
+        autoClose: 8000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+    });
+    }
+  }catch(error){
+      toast.error(`${error.response.data.message}`, {
+        position: "bottom-right",
+        autoClose: 8000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+    });
     }
   };
   const inCart = cart?.products.find((product) => {
+
     return product.productId._id === item._id
-  });
+
+    
+  })
+  ;
 
   const viewproductHandler = (id) => {
     navigate(`/product/${id}`);
@@ -52,7 +78,7 @@ const ProductCard = ({ cart, item }) => {
                     )
                   )}
                 </ul></div>
-              <div className="review">345 Reviews</div>
+              <div className="review">{item.reviews} Reviews</div>
             </div>
             <div className="price">{`Rs ${item.price}/-`}</div>
             <button className='cart-btn' onClick={(e) => onCartTap(item._id, inCart)}>{

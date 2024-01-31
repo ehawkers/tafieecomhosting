@@ -8,7 +8,7 @@ import CategoryCarousel from "../../pages/shop_page/component/categoryCarousel/c
 import { useFetch } from "../../hooks/api_hook.js";
 import FeatureCarouselCard from "./components/featureProductCarousal/featureProductCarousal.jsx";
 import { useNavigate } from "react-router-dom";
-import homehero from "../../assets/homepage-main.png";
+import homehero from "../../assets/homepage-main1.png";
 import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
@@ -165,11 +165,11 @@ const Dashboard = () => {
                   soil testing.
                 </p>
               </div>
-            {!user && <div className="registerSoilBTN">
-              <button onClick={(e) => navigate(`/auth/register`)}>
-                Register Now<i class="bi bi-chevron-right rigthIcon"></i>
-              </button>
-            </div>}
+              <div className="registerSoilBTN">
+                <button >
+                  Register Now<i class="bi bi-chevron-right rigthIcon"></i>
+                </button>
+              </div>
             </div>
           </div>
           <div className="franDiv col-7">

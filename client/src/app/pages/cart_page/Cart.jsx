@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 
 import "./Cart.css";
@@ -5,18 +6,21 @@ import { useFetch } from "../../hooks/api_hook";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
+import Header from '../../pages/header/header'
+import Footer from '../../pages/footer/footer'
 
 const Cart = () => {
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
-  const user = JSON.parse(localStorage.getItem('user'));
-  let { data: cart } = useFetch(`/api/getCartByUser/${user._id}`)
-
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   useEffect(() => {
-    if (!user) {
-      navigate('/auth/login');
+    if (user) {
+    } else {
+      navigate("/auth/login");
     }
   }, []);
+  let { data: cart } = useFetch(`/api/getCartByUser/${user?._id}`)
+
 
   useEffect(() => {
     if (cart) {
@@ -92,7 +96,11 @@ const Cart = () => {
     }
   };
   return (
+    <>
+     <Header />
+   
     <div className="cart-page">
+     
       <div className="cart-header">
         <h2 className="page-header">Cart</h2>
       </div>
@@ -137,6 +145,9 @@ const Cart = () => {
             </tr>
           </tfoot>
         </table>
+        
+        <div class="emptyDiv"></div>
+
 
         <div className="checkout-subtotal">
           <div className="subtotal">
@@ -148,7 +159,10 @@ const Cart = () => {
         </div>
       </div>
       <ToastContainer />
+      
     </div>
+    <Footer/>
+    </>
   );
 };
 
