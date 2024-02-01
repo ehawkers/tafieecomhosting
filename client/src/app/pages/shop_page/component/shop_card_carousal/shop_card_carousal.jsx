@@ -14,7 +14,7 @@ const ShopPageCarouselCard = ({ cart, items }) => {
     try{if (inCart) {
       navigate(`/Cart`);
     } else if(localStorage.getItem('user_id')){
-      await axios.put('http://localhost:8080/api/addToCart', {
+      await axios.put('https://twicksback.onrender.com/api/addToCart', {
         productId: id,
         userId: localStorage.getItem('user_id'),
         units: 1

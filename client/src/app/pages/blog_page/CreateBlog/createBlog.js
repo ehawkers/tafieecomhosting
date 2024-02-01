@@ -69,14 +69,14 @@ const CreateBlog = () => {
       formData.append("image", image);
 
       const imageUrl = await axios.post(
-        "http://localhost:8080/api/uploadBlogImage",
+        "https://twicksback.onrender.com/api/uploadBlogImage",
         formData
       );
       console.log(imageUrl);
       if (imageUrl) {
         if (imageUrl?.data.success) {
           const { data } = await axios.post(
-            "http://localhost:8080/api/composeBlog",
+            "https://twicksback.onrender.com/api/composeBlog",
             {
               title: title,
               content: content,

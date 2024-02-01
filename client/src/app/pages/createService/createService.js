@@ -53,14 +53,14 @@ const CreateService = () => {
       formData.append("image", image);
 
       const imageUrl = await axios.post(
-        "http://localhost:8080/api/uploadServiceImage",
+        "https://twicksback.onrender.com/api/uploadServiceImage",
         formData
       );
       console.log(imageUrl);
       if (imageUrl) {
         if (imageUrl?.data.success) {
           const { data } = await axios.post(
-            "http://localhost:8080/api/createService",
+            "https://twicksback.onrender.com/api/createService",
             {
               title: title,
               description: description,
