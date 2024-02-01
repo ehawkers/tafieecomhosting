@@ -58,11 +58,7 @@ const ShopPageCarouselCard = ({ cart, items }) => {
         >
           {items?.map((item, index) => {
             const inCart = cart?.products.find((product) => {
-              window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            });
-              return product.productId._id === item._id;
+              return product?.productId?._id === item._id;
 
             });
             return (
@@ -116,7 +112,7 @@ const ShopPageCarouselCard = ({ cart, items }) => {
                           className="cart-btn"
                           onClick={(e) => onCartTap(item._id, inCart)}
                         >
-                          {inCart ? "Update Cart" : "Add to Cart"}
+                          {inCart ? "View Cart" : "Add to Cart"}
                         </button>
                       </div>
                       <div className="poster-card">
